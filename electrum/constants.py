@@ -42,8 +42,8 @@ def read_json(filename, default):
     return r
 
 
-GIT_REPO_URL = "https://github.com/Electrum-RVN-SIG/electrum-ravencoin"
-GIT_REPO_ISSUES_URL = "https://github.com/Electrum-RVN-SIG/electrum-ravencoin/issues"
+GIT_REPO_URL = "https://github.com/Masterscooper/electrum-dogegpu"
+GIT_REPO_ISSUES_URL = "https://github.com/Masterscooper/electrum-dogegpu/issues"
 BIP39_WALLET_FORMATS = read_json('bip39_wallet_formats.json', [])
 
 
@@ -97,7 +97,7 @@ class AbstractNet:
 
     @classmethod
     def max_checkpoint(cls) -> int:
-        # DGW Checkpoints start at height 400,000 and are every 2016 blocks after
+        # DGW Checkpoints start at height 1 and are every 2016 blocks after
         return max(0, cls.DGW_CHECKPOINTS_START + (len(cls.DGW_CHECKPOINTS) * cls.DGW_CHECKPOINTS_SPACING) - 1)
 
     @classmethod
@@ -106,17 +106,17 @@ class AbstractNet:
         return bytes.fromhex(bitcoin.rev_hex(cls.GENESIS))
 
 
-class RavencoinMainnet(AbstractNet):
+class DogeGPUMainnet(AbstractNet):
     NET_NAME = "mainnet"
     TESTNET = False
     WIF_PREFIX = 128
-    ADDRTYPE_P2PKH = 60
-    ADDRTYPE_P2SH = 122
-    ADDRTYPE_P2SH_ALT = 122
+    ADDRTYPE_P2PKH = 38
+    ADDRTYPE_P2SH = 98
+    ADDRTYPE_P2SH_ALT = 98
     MATURE = 60
-    SEGWIT_HRP = "rc"
+    SEGWIT_HRP = "dp"
     BOLT11_HRP = SEGWIT_HRP
-    GENESIS = "0000006b444bc2f2ffe627be9d9e7e7a0730000870ef6eb6da46c8eae389df90"
+    GENESIS = "00000052129a4a8d7f095769951e24a0b6f82a68670324985d7733ec4686d3b4"
     DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     DEFAULT_SERVERS = read_json('servers.json', {})
     CHECKPOINTS = read_json('checkpoints.json', [])
@@ -124,15 +124,15 @@ class RavencoinMainnet(AbstractNet):
     DGW_CHECKPOINTS_SPACING = 2016
     DGW_CHECKPOINTS_START = 168 * DGW_CHECKPOINTS_SPACING  #338_688, DGW starts at 338_778
 
-    X16Rv2ActivationTS = 1569945600
-    KawpowActivationTS = 1588788000
-    KawpowActivationHeight = 1219736
-    nDGWActivationBlock = 338778
+    X16Rv2ActivationTS = 0
+    KawpowActivationTS = 1711951700
+    KawpowActivationHeight = 1
+    nDGWActivationBlock = 1
 
     DEFAULT_MESSAGE_CHANNELS = ['ELECTRUM_RAVENCOIN~notification']
-    ASSET_PREFIX = b'rvn'
-    SHORT_NAME = 'RVN'
-    LONG_NAME = 'Ravencoin'
+    ASSET_PREFIX = b'dogpu'
+    SHORT_NAME = 'DOGPU'
+    LONG_NAME = 'DogeGPU'
 
     MULTISIG_ASSETS = False
 
@@ -155,32 +155,32 @@ class RavencoinMainnet(AbstractNet):
     BIP44_COIN_TYPE = 175
 
     BURN_AMOUNTS = BurnAmounts(
-        IssueAssetBurnAmount=500,
-        ReissueAssetBurnAmount=100,
-        IssueSubAssetBurnAmount=100,
-        IssueUniqueAssetBurnAmount=5,
-        IssueMsgChannelAssetBurnAmount=100,
-        IssueQualifierAssetBurnAmount=1000,
-        IssueSubQualifierAssetBurnAmount=100,
-        IssueRestrictedAssetBurnAmount=1500,
+        IssueAssetBurnAmount=50000,
+        ReissueAssetBurnAmount=10000,
+        IssueSubAssetBurnAmount=10000
+        IssueUniqueAssetBurnAmount=500,
+        IssueMsgChannelAssetBurnAmount=10000,
+        IssueQualifierAssetBurnAmount=100000,
+        IssueSubQualifierAssetBurnAmount=10000,
+        IssueRestrictedAssetBurnAmount=150000,
         AddNullQualifierTagBurnAmount=0.1
     )
 
     BURN_ADDRESSES = BurnAddresses(
-        IssueAssetBurnAddress='RXissueAssetXXXXXXXXXXXXXXXXXhhZGt',
-        ReissueAssetBurnAddress='RXReissueAssetXXXXXXXXXXXXXXVEFAWu',
-        IssueSubAssetBurnAddress='RXissueSubAssetXXXXXXXXXXXXXWcwhwL',
-        IssueUniqueAssetBurnAddress='RXissueUniqueAssetXXXXXXXXXXWEAe58',
-        IssueMsgChannelAssetBurnAddress='RXissueMsgChanneLAssetXXXXXXSjHvAY',
-        IssueQualifierAssetBurnAddress='RXissueQuaLifierXXXXXXXXXXXXUgEDbC',
-        IssueSubQualifierAssetBurnAddress='RXissueSubQuaLifierXXXXXXXXXVTzvv5',
-        IssueRestrictedAssetBurnAddress='RXissueRestrictedXXXXXXXXXXXXzJZ1q',
-        AddNullQualifierTagBurnAddress='RXaddTagBurnXXXXXXXXXXXXXXXXZQm5ya',
-        GlobalBurnAddress='RXBurnXXXXXXXXXXXXXXXXXXXXXXWUo9FV'
+        IssueAssetBurnAddress='GXissueAssetXXXXXXXXXXXXXXXXY4EpkH',
+        ReissueAssetBurnAddress='GXReissueAssetXXXXXXXXXXXXXXUDgdkK',
+        IssueSubAssetBurnAddress='GXissueSubAssetXXXXXXXXXXXXXa34vJz',
+        IssueUniqueAssetBurnAddress='GXissueUniqueAssetXXXXXXXXXXU8Wezq',
+        IssueMsgChannelAssetBurnAddress='GXissueMsgChanneLAssetXXXXXXXXxtR5',
+        IssueQualifierAssetBurnAddress='GXissueQuaLifierXXXXXXXXXXXXU4k5t4',
+        IssueSubQualifierAssetBurnAddress='GXissueSubQuaLifierXXXXXXXXXZ6ha2f',
+        IssueRestrictedAssetBurnAddress='GXissueRestrictedXXXXXXXXXXXY1gTsx',
+        AddNullQualifierTagBurnAddress='GXaddTagBurnXXXXXXXXXXXXXXXXV6kAW2',
+        GlobalBurnAddress='GXBurnXXXXXXXXXXXXXXXXXXXXXXWVNjr8'
     )
 
 
-class RavencoinTestnet(AbstractNet):
+class DogeGPUTestnet(AbstractNet):
     NET_NAME = "testnet"
     BIP44_COIN_TYPE = 1
     LN_REALM_BYTE = 0
@@ -208,9 +208,9 @@ class RavencoinTestnet(AbstractNet):
     nDGWActivationBlock = 1
 
     DEFAULT_MESSAGE_CHANNELS = []
-    ASSET_PREFIX = b'rvn'
-    SHORT_NAME = 'tRVN'
-    LONG_NAME = 'Ravencoin'
+    ASSET_PREFIX = b'dogpu'
+    SHORT_NAME = 'tDOGPU'
+    LONG_NAME = 'DogeGPU'
     MULTISIG_ASSETS = False
     
     XPRV_HEADERS = {
@@ -266,13 +266,13 @@ def all_subclasses(cls):
 NETS_LIST = tuple(all_subclasses(AbstractNet))
 
 # don't import net directly, import the module instead (so that net is singleton)
-net = RavencoinMainnet
+net = DogeGPUMainnet
 
 
 def set_mainnet():
     global net
-    net = RavencoinMainnet
+    net = DogeGPUMainnet
 
 def set_testnet():
     global net
-    net = RavencoinTestnet
+    net = DogeGPUTestnet

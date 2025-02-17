@@ -169,7 +169,7 @@ class ExchangeBase(Logger):
 
     def get_cached_spot_quote(self, ccy: str) -> Decimal:
         """Returns the cached exchange rate as a Decimal"""
-        if ccy == 'RVN':
+        if ccy == 'DOGPU':
             return Decimal(1)
         rate = self._quotes.get(ccy)
         if rate is None:
@@ -183,7 +183,7 @@ class CoinGecko(ExchangeBase):
 
     async def get_rates(self, ccy):
         dicts = await self.get_json('api.coingecko.com',
-                                    '/api/v3/coins/ravencoin/market_chart?vs_currency=%s&days=1' % ccy)
+                                    '/api/v3/coins/dogegpu/market_chart?vs_currency=%s&days=1' % ccy)
         return {ccy: to_decimal(dicts['prices'][-1][1])}
 
     def history_ccys(self):
@@ -192,7 +192,7 @@ class CoinGecko(ExchangeBase):
 
     async def request_history(self, ccy):
         history = await self.get_json('api.coingecko.com',
-                                      '/api/v3/coins/ravencoin/market_chart?vs_currency=%s&days=max' % ccy)
+                                      '/api/v3/coins/dogegpu/market_chart?vs_currency=%s&days=max' % ccy)
         return dict([(datetime.utcfromtimestamp(h[0]/1000).strftime('%Y-%m-%d'), str(h[1]))
                      for h in history['prices']])
 

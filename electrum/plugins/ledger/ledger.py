@@ -344,7 +344,7 @@ class Ledger_Client(HardwareClientBase, ABC):
         try:
             cl = ledger_bitcoin.createClient(transport, chain=get_chain())
 
-            # This will fail for RVN but not for BTC
+            # This will fail for DOGPU but not for BTC
             cl.get_master_fingerprint()
         except (
             ledger_bitcoin.exception.errors.InsNotSupportedError,

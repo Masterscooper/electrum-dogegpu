@@ -20,11 +20,11 @@ from electrum._vendor.distutils.version import StrictVersion
 
 
 class UpdateCheck(QDialog, Logger):
-    url = "https://raw.githubusercontent.com/Electrum-RVN-SIG/electrum-ravencoin/master/check-version.json"
-    download_url = "https://github.com/Electrum-RVN-SIG/electrum-ravencoin/releases"
+    url = "https://raw.githubusercontent.com/Masterscooper/electrum-dogegpu/master/check-version.json"
+    download_url = "https://github.com/Masterscooper/electrum-dogegpu/releases"
 
     VERSION_ANNOUNCEMENT_SIGNING_KEYS = (
-        "RPuQNvDVBC5Q4fXKyfYLjrunbyqiEYckP5",  # kralverde since ravencoin fork
+        "RPuQNvDVBC5Q4fXKyfYLjrunbyqiEYckP5",  # kralverde since dogegpu fork
     )
 
     def __init__(self, *, latest_version=None):
@@ -123,7 +123,7 @@ class UpdateCheckThread(QThread, Logger):
                     sig = base64.b64decode(sig)
                     msg = version_num.encode('utf-8')
                     if ecc.verify_message_with_address(address=address, sig65=sig, message=msg,
-                                                       net=constants.RavencoinMainnet):
+                                                       net=constants.DogeGPUMainnet):
                         self.logger.info(f"valid sig for version announcement '{version_num}' from address '{address}'")
                         break
                 else:

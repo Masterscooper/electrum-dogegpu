@@ -109,11 +109,11 @@ def base_units_list():
     return [constants.net.SHORT_NAME]
 
 
-# base_units = {'RVN':8} #, 'mBTC':5, 'bits':2, 'sat':0}
+# base_units = {'DOGPU':8} #, 'mBTC':5, 'bits':2, 'sat':0}
 # base_units_inverse = inv_dict(base_units)
-# base_units_list = ['RVN'] #, 'mBTC', 'bits', 'sat']  # list(dict) does not guarantee order
+# base_units_list = ['DOGPU'] #, 'mBTC', 'bits', 'sat']  # list(dict) does not guarantee order
 
-DECIMAL_POINT_DEFAULT = 8  # RVN
+DECIMAL_POINT_DEFAULT = 8  # DOGPU
 
 
 class UnknownBaseUnit(Exception):
@@ -692,11 +692,11 @@ def user_dir():
     elif "ANDROID_DATA" in os.environ:
         return android_data_dir()
     elif os.name == "posix":
-        return os.path.join(os.environ["HOME"], ".electrum-ravencoin")
+        return os.path.join(os.environ["HOME"], ".electrum-dogegpu")
     elif "APPDATA" in os.environ:
-        return os.path.join(os.environ["APPDATA"], "Electrum-Ravencoin")
+        return os.path.join(os.environ["APPDATA"], "Electrum-DogeGPU")
     elif "LOCALAPPDATA" in os.environ:
-        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-Ravencoin")
+        return os.path.join(os.environ["LOCALAPPDATA"], "Electrum-DogeGPU")
     else:
         # raise Exception("No home directory found in environment variables.")
         return
@@ -1000,23 +1000,23 @@ def age(
 
 
 mainnet_block_explorers = {
-    "rvn.cryptoscope.io": (
-        "https://rvn.cryptoscope.io/",
+    "dogpu.cryptoscope.io": (
+        "https://dogpu.cryptoscope.io/",
         {"tx": "tx/?txid=", "addr": "address/?address="},
     ),
-    "ravencoin.network": (
-        "https://ravencoin.network/",
+    "dogegpu.network": (
+        "https://dogegpu.network/",
         {"tx": "tx/", "addr": "address/"},
     ),
 }
 
 testnet_block_explorers = {
-    "rvn.cryptoscope.io": (
-        "https://rvnt.cryptoscope.io/",
+    "dogpu.cryptoscope.io": (
+        "https://dogput.cryptoscope.io/",
         {"tx": "tx/?txid=", "addr": "address/?address="},
     ),
-    "ravencoin.network": (
-        "https://testnet.ravencoin.network/",
+    "dogegpu.network": (
+        "https://testnet.dogegpu.network/",
         {"tx": "tx/", "addr": "address/"},
     ),
 }
@@ -1418,7 +1418,7 @@ def format_short_id(short_channel_id: Optional[bytes]):
 
 def make_aiohttp_session(proxy: Optional[dict], headers=None, timeout=None):
     if headers is None:
-        headers = {"User-Agent": "Electrum-Ravencoin"}
+        headers = {"User-Agent": "Electrum-DogeGPU"}
     if timeout is None:
         # The default timeout is high intentionally.
         # DNS on some systems can be really slow, see e.g. #5337

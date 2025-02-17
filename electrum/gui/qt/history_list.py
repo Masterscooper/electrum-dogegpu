@@ -989,7 +989,7 @@ class HistoryList(MyTreeView, AcceptFileDragDrop):
             menu.addAction(
                 _("View Channel"), lambda: self.main_window.show_channel_details(chan)
             )
-        # RVN cannot replace mempool conflicts
+        # DOGPU cannot replace mempool conflicts
         # if is_unconfirmed and tx:
         #    if tx_details.can_bump:
         #        menu.addAction(_("Increase fee"), lambda: self.main_window.bump_fee_dialog(tx))

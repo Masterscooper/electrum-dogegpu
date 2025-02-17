@@ -124,7 +124,7 @@ class ManageAssetPanel(QWidget, Logger):
         grid.addWidget(self.asset_checker.line_edit, 1, 2, 1, 9)
         grid.addWidget(self.asset_checker.error_button, 1, 11)
 
-        self.send_button = EnterButton(_("Pay") + f" {self.burn_amount} RVN...", self._create_tx)
+        self.send_button = EnterButton(_("Pay") + f" {self.burn_amount} DOGPU...", self._create_tx)
         self.send_button.setEnabled(False)
         self.send_button.setMinimumWidth(char_width_in_lineedit() * 16)
 
@@ -497,7 +497,7 @@ class CreateAssetPanel(ManageAssetPanel):
     def _clayout_on_edit(self, clayout: ChoicesLayout):
         self.burn_address = self.asset_types[clayout.selected_index()][2]
         self.burn_amount = self.asset_types[clayout.selected_index()][3]
-        self.send_button.setText(_("Pay") + f" {self.burn_amount} RVN...")
+        self.send_button.setText(_("Pay") + f" {self.burn_amount} DOGPU...")
 
         self.amount_e.setAmount(COIN)
         self.divisions_e.setAmount(0)
@@ -742,8 +742,8 @@ class CreateAssetPanel(ManageAssetPanel):
         def make_tx(fee_est, *, confirmed_only=False):
             appended_vouts = []
             if asset_type == AssetType.RESTRICTED:
-                # https://github.com/RavenProject/Ravencoin/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L4567
-                # https://github.com/RavenProject/Ravencoin/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L901
+                # https://github.com/DogeProject/DogeGPU/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L4567
+                # https://github.com/DogeProject/DogeGPU/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L901
                 # Longest verifier string is 75 de-facto. OP_PUSH used.
                 verifier_string = self.verifier_e.line_edit.text()
                 if not verifier_string:
@@ -772,7 +772,7 @@ class CreateAssetPanel(ManageAssetPanel):
 
             try:
                 if not goto_address:
-                    # Freeze a change address so it is seperate from the rvn change
+                    # Freeze a change address so it is seperate from the dogpu change
                     self.parent.wallet.set_reserved_state_of_address(asset_change_address, reserved=True)
                 if parent_asset_change_address:
                     self.parent.wallet.set_reserved_state_of_address(parent_asset_change_address, reserved=True)
@@ -910,7 +910,7 @@ class ReissueAssetPanel(ManageAssetPanel):
         super().__init__(parent)
         self.burn_address = constants.net.BURN_ADDRESSES.ReissueAssetBurnAddress
         self.burn_amount = constants.net.BURN_AMOUNTS.ReissueAssetBurnAmount
-        self.send_button.setText(_("Pay") + f" {self.burn_amount} RVN...")
+        self.send_button.setText(_("Pay") + f" {self.burn_amount} DOGPU...")
         self.asset_selector_combo.setVisible(True)
         self.amount_e.min_amount = 0
         self.amount_e.setAmount(0)
@@ -968,8 +968,8 @@ class ReissueAssetPanel(ManageAssetPanel):
             appended_vouts = []
             verifier_string = self.verifier_e.line_edit.text()
             if selected_asset[0] == '$':
-                # https://github.com/RavenProject/Ravencoin/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L4567
-                # https://github.com/RavenProject/Ravencoin/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L901
+                # https://github.com/DogeProject/DogeGPU/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L4567
+                # https://github.com/DogeProject/DogeGPU/blob/e48d932ec70267a62ec3541bdaf4fe022c149f0e/src/assets/assets.cpp#L901
                 # Longest verifier string is 75 de-facto. OP_PUSH used.
                 if not verifier_string:
                     verifier_string = 'true'
@@ -1000,7 +1000,7 @@ class ReissueAssetPanel(ManageAssetPanel):
 
             try:
                 if not goto_address:
-                    # Freeze a change address so it is seperate from the rvn change
+                    # Freeze a change address so it is seperate from the dogpu change
                     self.parent.wallet.set_reserved_state_of_address(asset_change_address, reserved=True)
                 self.parent.wallet.set_reserved_state_of_address(parent_asset_change_address, reserved=True)
 
