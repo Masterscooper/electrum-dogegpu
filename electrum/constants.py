@@ -122,10 +122,10 @@ class DogeGPUMainnet(AbstractNet):
     CHECKPOINTS = read_json('checkpoints.json', [])
     DGW_CHECKPOINTS = read_json('checkpoints_dgw.json', [])
     DGW_CHECKPOINTS_SPACING = 2016
-    DGW_CHECKPOINTS_START = 168 * DGW_CHECKPOINTS_SPACING  #338_688, DGW starts at 338_778
+    DGW_CHECKPOINTS_START = 1 * DGW_CHECKPOINTS_SPACING  #DGW started at block 1
 
     X16Rv2ActivationTS = 0
-    KawpowActivationTS = 1711951700
+    KawpowActivationTS = 1711951200
     KawpowActivationHeight = 1
     nDGWActivationBlock = 1
 
@@ -157,7 +157,7 @@ class DogeGPUMainnet(AbstractNet):
     BURN_AMOUNTS = BurnAmounts(
         IssueAssetBurnAmount=50000,
         ReissueAssetBurnAmount=10000,
-        IssueSubAssetBurnAmount=10000
+        IssueSubAssetBurnAmount=10000,
         IssueUniqueAssetBurnAmount=500,
         IssueMsgChannelAssetBurnAmount=10000,
         IssueQualifierAssetBurnAmount=100000,
