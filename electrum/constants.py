@@ -119,10 +119,10 @@ class DogeGPUMainnet(AbstractNet):
     GENESIS = "00000052129a4a8d7f095769951e24a0b6f82a68670324985d7733ec4686d3b4"
     DEFAULT_PORTS = {'t': '50001', 's': '50002'}
     DEFAULT_SERVERS = read_json('servers.json', {})
-    CHECKPOINTS = read_json('checkpoints.json', [])
+    CHECKPOINTS = []
     DGW_CHECKPOINTS = read_json('checkpoints_dgw.json', [])
     DGW_CHECKPOINTS_SPACING = 2016
-    DGW_CHECKPOINTS_START = 1 * DGW_CHECKPOINTS_SPACING  #DGW started at block 1
+    DGW_CHECKPOINTS_START = 0 
 
     X16Rv2ActivationTS = 0
     KawpowActivationTS = 1711951200
