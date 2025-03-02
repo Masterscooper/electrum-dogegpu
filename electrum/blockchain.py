@@ -739,7 +739,7 @@ class Blockchain(Logger):
             BlockReading = get_block_reading_from_height((height - 1) - CountBlocks)
 
         bnNew = PastDifficultyAverage
-        nTargetTimespan = CountBlocks * 60  # 1 min
+        nTargetTimespan = CountBlocks * 15  # 15 seconds per block reduced from 60 prefork
 
         nActualTimespan = max(nActualTimespan, nTargetTimespan // 3)
         nActualTimespan = min(nActualTimespan, nTargetTimespan * 3)
