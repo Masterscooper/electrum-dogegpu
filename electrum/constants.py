@@ -129,7 +129,7 @@ class DogeGPUMainnet(AbstractNet):
     KawpowActivationHeight = 1
     nDGWActivationBlock = 1
 
-    DEFAULT_MESSAGE_CHANNELS = ['ELECTRUM_RAVENCOIN~notification']
+    DEFAULT_MESSAGE_CHANNELS = ['ELECTRUM_DOGEGPU~notification']
     ASSET_PREFIX = b'dogpu'
     SHORT_NAME = 'DOGPU'
     LONG_NAME = 'DogeGPU'
